@@ -1,0 +1,131 @@
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>자바스크립드 오픈북 시험 대비 요약본</title>
+    <script src = "js/자바스크립트요약.js"></script>
+
+  </head>
+  <body onresize="WindowSize()">
+      <section>
+        <h2>onresize함수 사용</h2>
+        <p id="demo6"></p>
+        <script>
+          function WindowSize() {
+            var w = window.outerWidth;
+            var h = window.outerHeight;
+            var txt = "Window size: width=" + w + ", height=" + h;
+            document.getElementById("demo6").innerHTML = txt;
+          }
+        </script>
+      </section>
+
+      <section>
+        <h2>반복문for</h2>
+        <button type="button" onclick="Loop()">반복문 출력</button>
+        <p id="demo5"></p>
+        <script>
+          function Loop(){
+            var cars = ["BMW", "Volvo", "Saab", "Ford", "Fiat", "Audi"];
+            var text = "";
+            var i;
+            for (i = 0; i < cars.length; i++) {
+              text = text+cars[i] + "<br>";
+            }
+            document.getElementById("demo5").innerHTML = text;
+          }
+        </script>
+      </section>
+
+      <section>
+        <h2>form : input 종류</h2>
+        <form>
+          <label for="name" value="#ff0000">text</label>
+          <input type="text" id="name"><br>
+
+          <label for="email"> Email </label>
+          <input type="email" id="email"><br>
+
+          <label for="birth">date</label>
+          <input type="date" id="birth"><br>
+
+          <label for="bday">datetime-local</label>
+          <input type="datetime-local" id="bday"> <br>
+
+          <label type="password" for="password">Password:</label>
+          <input type="password"> <br>
+
+          <label for="choosecolor">color</label>
+          <input type="color" id="choosecolor"> <br>
+
+          <label for="Favnum">number</label>
+          <input type="number" id="Favnum" min="0" max="9"> <br>
+
+          <label for="points">range</label>
+          <input type="range" id="points" name="points" min="0" max="10"> <br>
+
+          <label for="myFile">file</label>
+          <input type="file" id="myFile"><br><br>
+
+          <input type="button" onclick="alert('요약문1의 알림창띄우기랑 다름')" value="누르면 알림창뜸">
+          <input type="submit" value="확인">
+          <input type="reset"  value="초기화">
+        </form>
+      </section>
+
+      <section>
+        <h2>googlemap</h2>
+        <h4>지도불러오기/마커찍기(애니메이션)/선그리기 및 영역색칠하기</h4>
+        <div id="googleMap" style="width:100%;height:400px;"></div>
+        <script>
+        function myMap() {
+          var myLatLng={lat: 51.508742, lng: -0.120850};
+
+          var map = new google.maps.Map(document.getElementById("googleMap"), {
+            center: myLatLng,
+            zoom:5
+          });
+          var marker = new google.maps.Marker({
+            position: myLatLng,
+            animation: google.maps.Animation.BOUNCE,
+            title: "London"
+          });
+          marker.setMap(map);
+
+          var myTrip = [ //배열 선언
+            {lat: 58.969975, lng: 5.733107}, //stavanger
+            {lat: 52.370216, lng: 4.895168}, //amsterdam
+            {lat: 51.508742, lng: -0.120850}, //London
+            {lat: 58.969975, lng: 5.733107} //stavanger
+          ];
+          var flightPath = new google.maps.Polygon({//다각형그리기
+            path:myTrip,
+            strokeColor:"#0000FF", //선 색깔
+            strokeOpacity:0,//선 투명도
+            strokeWeight:3, //선굵기
+            fillColor:"#0000FF",//영역 색깔
+            fillOpacity:0.4//영역 투명도
+          });
+        flightPath.setMap(map);
+
+        var myCity = new google.maps.Circle({//원그리기
+          center:myLatLng, //원의 중심 좌표
+          radius:20000, //원크기
+          strokeColor:"#0000FF",
+          strokeOpacity:0.8,
+          strokeWeight:2,
+          fillColor:"#0000FF",
+          fillOpacity:0.4
+        });
+        myCity.setMap(map);
+
+        var infowindow = new google.maps.InfoWindow({//지도상의 마커표시상에 있는 도시위에 말풍선 띄우기
+          content:"It's London"
+        });
+        infowindow.open(map,marker);
+      }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhsBnVJLEWy6V-dAW-yDL8Z5KLCeHZ9gQ&callback=myMap"></script>
+
+      </section>
+  </body>
+</html>

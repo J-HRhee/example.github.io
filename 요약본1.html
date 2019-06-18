@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>자바스크립드 오픈북 시험 대비 요약본</title>
+    <script src = "js/자바스크립트요약.js"></script>
+  </head>
+  <body>
+    <h1>f12눌러봐도됨</h1>
+
+    <section>
+      <h2>외부 자바스크립트 파일 불러오는 법</h2>
+      <p>불러오기가 성공하면 밑줄에 Hello World!! 가 나타납니다(자바 스크립트로 css변경).</p>
+      <p id="demo0"></p>
+      <script>
+        HW();
+      </script>
+    </section>
+
+    <section>
+      <h2>버튼 누르면 id='demo'인 곳에 date출력됨(getElementById 로 직접 받아옴)</h2>
+      <button type="button" onclick="document.getElementById('demo').innerHTML = Date()">
+        Click me to display Date and Time.
+      </button>
+      <p id="demo">현재 시각을 보고싶으면 위의 버튼을 누르시오.</p>
+    </section>
+
+    <section>(getElementById 로 직접 받아옴)
+      <h2>버튼 누르면 id="myImage"인 아래의 이미지가 다른 이미지로 바뀜</h2>
+        <button onclick="document.getElementById('myImage').src='img/pic_bulbon.gif'">
+          Turn on the light
+        </button>
+
+        <img id="myImage" src="img/pic_bulboff.gif" style="width:100px">
+
+        <button onclick="document.getElementById('myImage').src='img/pic_bulboff.gif'">
+          Turn off the light
+        </button>
+    </section>
+
+    <section>
+      <h2>입력(prompt)함수사용</h2>
+        <button onclick="myFunction()">입력창</button> 버튼 누르면 myFunction()이 실행됨
+
+        <p id="demo1">이 텍스트는 버튼을 눌러 함수를 실행하면 바뀌니까 해보세요.</p>
+        <p>txt의 자료형 : <span id="demo1.1">??</span> </p>
+        <script>
+        function myFunction() {
+          var txt = prompt("myFunction이 실행됨. 원하는 텍스트를 입력하면 변수txt에 저장됨.", "아무거나 입력"/*디폴트 텍스트*/);
+          if (txt == null || txt == "") {
+            txt = "사용자가 취소했거나 아무것도 입력하지않음";
+          }
+          else {
+            txt="당신이 입력한 txt는 '" + txt+  "' (이)군요.";
+          }
+          document.getElementById("demo1").innerHTML = txt;
+          document.getElementById("demo1.1").innerHTML = typeof txt;
+        }
+        </script>
+        <p><strong>외부 자바스크립트 파일을 이용한 텍스트 합치기 </strong></p>
+         <button type="button"onclick="Insert()">문자열 더하기</button>
+         <p id="demo1.2">아무거나 입력한 두가지 텍스트가 합쳐져서 출력됨.</p>
+         <script>
+           function Insert(){
+             var x=prompt("아무거나 입력");
+             var y= prompt("아무거나 입력");
+             var z=x+y;
+             document.getElementById("demo1.2").innerHTML = z;
+           }
+         </script>
+    </section>
+
+    <section>
+      <h2>알림창(alert)</h2>
+      <button onclick="alert('꼭 눌러봐야 아냐')">알림창</button> 누르면 알림창뜸.
+      버튼 없애고 script 태그내에 alert함수만 쓰면 페이지가 로딩되기 전에 알림창이 뜸. <br>
+      <input type="button" onclick="alert('input type=button으로 알림창띄우기')" value="알림창">
+    </section>
+
+    <section>
+      <h2>외부 자바스크립트 파일 불러오기(js파일에서 함수 불러오기)</h2>
+      <button onclick="myText()">외부 자바스크립트 실행버튼</button>
+      <p id="demo2">id=demo2인 p태그</p>
+      <script>
+        function myText() {
+          document.getElementById("demo2").innerHTML = "id=demo2인 p태그의 내용이 바뀜.";
+        }
+      </script>
+
+    </section>
+
+    <section>
+      <h2>자바스크립트 변수 계산</h2>
+      <p>In this example, x, y, and z are variables.</p>
+      <button type="button" onclick="calculate()">x+y</button> 아래의 '??'가 올바른 값으로 바뀜
+      <p>x=5, y=6, z=5</p>
+      <p>x+y=<span id="demo3">??</span></p>
+      <p>x=y는 올바른 명제인가? 답: <span id="demo3.1">??</span> </p>
+      <p>x=z는 올바른 명제인가? 답: <span id="demo3.2">??</span> </p>
+      <p>x의 자료형 : <span id="demo3.3">??</span> </p>
+      <script id="더하기 연산">
+        function calculate(){
+          var x = 5;
+          var y = 6;
+          var z = 5;
+          document.getElementById("demo3").innerHTML =x+y;
+          document.getElementById("demo3.1").innerHTML = (x == y);
+          document.getElementById("demo3.2").innerHTML = (x == z);
+          document.getElementById("demo3.3").innerHTML = typeof x;
+      }
+      </script>
+      x와 y가 문자가 아닌 숫자로 선언되었기 때문에 x+y가 56이 아닌 11로 계산됨.
+    </section>
+
+    <section>
+      <h2>배열 선언 및 활용(array)/onmouseover 활용</h2>
+      <p onmouseover="array()" id="demo4" >마우스 올려봐</p>
+
+      <script>
+        function array(){
+          var cars = ["Saab", "Volvo", "BMW"];
+          document.getElementById("demo4").innerHTML = cars + " 배열 전체 출력<br>" + cars[0] + "<br>" + cars[1] + "<br>" + cars[2];
+        }
+      </script>
+    </section>
+
+
+  </body>
+
+</html>
